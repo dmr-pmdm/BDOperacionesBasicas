@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Operaciones con BD" />
+
+    <Button
+        android:id="@+id/btnInserta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INSERTA"/>
+
+    <Button
+        android:id="@+id/btnBorra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BORRA"/>
+
+    <Button
+        android:id="@+id/btnModifica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICA"/>
+
+    <Button
+        android:id="@+id/btnMuestra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MUESTRA"/>
+
+</LinearLayout>

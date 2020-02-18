@@ -2,6 +2,7 @@ package com.example.bdoperacionesbasicas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mostrar extends AppCompatActivity {
 
@@ -45,21 +49,35 @@ public class Mostrar extends AppCompatActivity {
                             null, null,
                             null, null);
                 }
+//                if (c.moveToFirst()) {
+//                    do {
+//                        int codigo = c.getInt(0);
+//                        String nombre = c.getString(1);
+//                        Toast.makeText(Mostrar.this,
+//                                "Codigo: " + codigo + "\n" +
+//                                        "Nombre: " + nombre,
+//                                Toast.LENGTH_SHORT).show();
+//                    } while (c.moveToNext());
+//                } else {
+//                    Toast.makeText(Mostrar.this,
+//                            "No hay usuarios registrados",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+                // LISTA DE USUARIOS
+                List<String> usuarios = new ArrayList<>();
                 if (c.moveToFirst()) {
                     do {
-                        int codigo = c.getInt(0);
-                        String nombre = c.getString(1);
-                        Toast.makeText(Mostrar.this,
-                                "Codigo: " + codigo + "\n" +
-                                        "Nombre: " + nombre,
-                                Toast.LENGTH_SHORT).show();
-                    } while (c.moveToNext());
-                } else {
-                    Toast.makeText(Mostrar.this,
-                            "No hay usuarios registrados",
-                            Toast.LENGTH_SHORT).show();
+                        usuarios.add(Integer.toString(c.getInt(0))+
+                                " - " + c.getString(1));
+                    } while(c.moveToNext());
                 }
                 c.close();
+                String[] listUsuarios = new String[usuarios.size()];
+                listUsuarios = usuarios.toArray(listUsuarios);
+                Intent i = new Intent();
+                i.putExtra("usuarios", listUsuarios);
+                setResult(RESULT_OK, i);
+                finish();
             }
         });
 

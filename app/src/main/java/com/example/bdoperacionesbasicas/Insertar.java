@@ -34,26 +34,32 @@ public class Insertar extends AppCompatActivity {
             public void onClick(View v) {
                 int codigo = Integer.parseInt(edtCodigo.getText().toString());
                 String nombre = edtNombre.getText().toString();
-                ContentValues nuevoRegistro = new ContentValues();
-                nuevoRegistro.put("codigo", codigo);
-                nuevoRegistro.put("nombre", nombre);
 
-                long logInsert = escribirBD.insert("usuarios",
-                        null,
-                        nuevoRegistro);
-                if (logInsert != -1) {
-                    Toast.makeText(Insertar.this,
-                            "Usuario insertado correctamente",
-                            Toast.LENGTH_SHORT).show();
+                if (!nombre.isEmpty()) {
+                    ContentValues nuevoRegistro = new ContentValues();
+                    nuevoRegistro.put("codigo", codigo);
+                    nuevoRegistro.put("nombre", nombre);
+
+                    long logInsert = escribirBD.insert("usuarios",
+                            null,
+                            nuevoRegistro);
+                    if (logInsert != -1) {
+                        Toast.makeText(Insertar.this,
+                                "Usuario insertado correctamente",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Insertar.this,
+                                "Ya existe un usuario con ese código en la bd",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    edtCodigo.setText("");
+                    edtNombre.setText("");
                 } else {
                     Toast.makeText(Insertar.this,
-                            "Ya existe un usuario con ese código en la bd",
+                            "El campo nombre no puede estar vacio",
                             Toast.LENGTH_SHORT).show();
                 }
-
-                edtCodigo.setText("");
-                edtNombre.setText("");
-
             }
         });
 
